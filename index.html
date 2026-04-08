@@ -1,1 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Connect10 | Internet de Alta Velocidade em Botucatu</title>
+    <!-- Bootstrap 5 + Ícones + Google Fonts + Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8faff;
+            color: #1a2c3e;
+            scroll-behavior: smooth;
+        }
+
+        /* Gradientes e cores inovadoras */
+        :root {
+            --primary: #0b2b5e;
+            --primary-dark: #071e42;
+            --secondary: #00b4d8;
+            --accent: #ff7b2c;
+            --light-bg: #f0f6ff;
+            --gradient-hero: linear-gradient(135deg, #0b2b5e 0%, #0a4c7a 100%);
+            --gradient-card: linear-gradient(145deg, #ffffff 0%, #f5f9ff 100%);
+            --shadow-sm: 0 10px 30px -10px rgba(0,0,0,0.08);
+            --shadow-hover: 0 25px 35px -12px rgba(0, 60, 100, 0.2);
+        }
+
+        /* Navbar custom */
+        .navbar {
+            background: rgba(11, 43, 94, 0.96) !important;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 0.8rem 0;
+            transition: all 0.3s;
+        }
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(120deg, #fff, #9ad7f5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent !important;
+        }
+        .navbar-brand span {
+            color: #ffb347;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+        }
+        .nav-link {
+            font-weight: 600;
+            color: #eef4ff !important;
+            margin: 0 0.3rem;
+            transition: 0.2s;
+        }
+        .nav-link:hover {
+            color: #ffb347 !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-hero);
+            color: white;
+            padding: 6rem 0 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,64L80,69C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="%23f8faff" opacity="0.9"></path></svg>');
+            background-size: cover;
+            bottom: -2px;
+            height: 60px;
+        }
+        .hero h1 {
+            font-weight: 800;
+            font-size: 3.2rem;
+            letter-spacing: -1px;
+        }
+        .hero .btn-cta {
+            background: #ff7b2c;
+            border: none;
+            padding: 12px 32px;
+            font-weight: 700;
+            border-radius: 40px;
+            transition: 0.3s;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+        }
+        .hero .btn-cta:hover {
+            background: #ff963c;
+            transform: scale(1.02);
+            box-shadow: 0 12px 22px rgba(0,0,0,0.3);
+        }
+
+        /* cards planos */
+        .plan-card {
+            background: var(--gradient-card);
+            border-radius: 2rem;
+            padding: 1.8rem 1rem;
+            transition: 0.3s ease;
+            border: 1px solid rgba(0,180,216,0.2);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            height: 100%;
+        }
+        .plan-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--secondary);
+        }
+        .plan-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            background: #eef2ff;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 1.2rem;
+        }
+        .price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .btn-outline-custom {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            padding: 8px 20px;
+        }
+        .btn-outline-custom:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* seção sobre + diferenciais */
+        .section-title {
+            font-weight: 800;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 4px;
+        }
+        .diferencial-box {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 28px;
+            box-shadow: var(--shadow-sm);
+            transition: 0.2s;
+            height: 100%;
+            border-bottom: 3px solid transparent;
+        }
+        .diferencial-box:hover {
+            border-bottom-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        .diferencial-icon {
+            font-size: 2.8rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* cards de info empresa */
+        .info-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem;
+            height: 100%;
+            box-shadow: var(--shadow-sm);
+        }
+        .info-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            background: #eef3fc;
+            padding: 12px;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+        footer {
+            background: #0b1c2c;
+            color: #cddfe7;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 32px;
+            line-height: 60px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+            z-index: 99;
+            transition: 0.2s;
+        }
+        .whatsapp-float:hover {
+            background: #20b859;
+            transform: scale(1.05);
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- WhatsApp flutuante -->
+<a href="https://wa.me/5514997234636?text=Olá%20Connect10!%20Gostaria%20de%20mais%20informações%20sobre%20seus%20planos." class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Connect<span>10</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon bg-white rounded"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+                <li class="nav-item"><a class="nav-link" href="#planos">Planos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                <li class="nav-item"><a class="nav-link" href="#diferenciais">Diferenciais</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero / Início -->
+<section id="inicio" class="hero" style="padding-top: 100px;">
+    <div class="container position-relative">
+        <div class="row align-items-center">
+            <div class="col-lg-7 mb-4 mb-lg-0">
+                <h1 class="mb-3">Conectividade sem limites com <span class="text-warning">Connect10</span></h1>
+                <p class="lead mb-4">Internet fibra óptica de alta velocidade, estabilidade e suporte local. Mais de 23 anos transformando Botucatu e região.</p>
+                <a href="#planos" class="btn btn-cta text-white"><i class="fas fa-rocket me-2"></i>Conheça nossos planos</a>
+                <a href="#contato" class="btn btn-outline-light ms-3 rounded-pill px-4"><i class="fas fa-headset"></i> Fale com um especialista</a>
+            </div>
+            <div class="col-lg-5 text-center">
+                <img src="https://img.icons8.com/3d-fluency/300/null/internet--v2.png" alt="Internet 3d" class="img-fluid" style="max-width: 280px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Planos inovadores -->
+<section id="planos" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Planos que <span style="color: #ff7b2c;">aceleram</span> seu dia</h2>
+            <p class="text-muted">Tecnologia fibra óptica com velocidades simétricas e wifi avançado para toda família.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="plan-card">
+                    <div class="plan-icon"><i class="fas fa-wifi"></i></div>
+                    <h3 class="fw-bold">Connect 300 Mega</h3>
+                    <div class="price mt-2">R$ 99,90<span style="font-size: 1rem;">/mês</span></div>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li><i class="fas fa-check-circle text-success me-2"></i>300 Mbps Download/Upload</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>WiFi 6 Mesh</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Suporte 24h</li>
+                    </ul>
+                    <a href="https://wa.me/5514997234636?text=Quero%20o%20plano%20Connect%20300%20Mega" class="btn btn-outline-custom" target="_blank">Assinar <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="plan-card border border-primary shadow">
+                    <div class="plan-icon"><i class="fas fa-bolt"></i></div>
+                    <h3 class="fw-bold">Connect 500 Mega <span class="badge bg-warning text-dark">MAIS VENDIDO</span></h3>
+                    <div class="price mt-2">R$ 129,90<span style="font-size: 1rem;">/mês</span></div>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li><i class="fas fa-check-circle text-success me-2"></i>500 Mbps Simétricos</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Roteador Wi-Fi 6 incluso</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Streaming 4K + Games</li>
+                    </ul>
+                    <a href="https://wa.me/5514997234636?text=Quero%20o%20plano%20Connect%20500%20Mega" class="btn btn-outline-custom" target="_blank">Assinar <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="plan-card">
+                    <div class="plan-icon"><i class="fas fa-rocket"></i></div>
+                    <h3 class="fw-bold">Connect 1 Gigabyte</h3>
+                    <div class="price mt-2">R$ 189,90<span style="font-size: 1rem;">/mês</span></div>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li><i class="fas fa-check-circle text-success me-2"></i>1 Gbps (1000 Mega)</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Instalação Premium</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>Suporte VIP 24/7</li>
+                    </ul>
+                    <a href="https://wa.me/5514997234636?text=Quero%20o%20plano%20Connect%201%20Giga" class="btn btn-outline-custom" target="_blank">Assinar <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5 text-secondary small"><i class="fas fa-shield-alt me-1"></i> Todos os planos incluem manutenção preventiva e suporte local em Botucatu.</div>
+    </div>
+</section>
+
+<!-- Sobre a empresa + dados legais -->
+<section id="sobre" class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <h2 class="section-title">Sobre a Connect10</h2>
+                <p class="fs-5">Há <strong>23 anos</strong> conectando famílias, empresas e instituições em Botucatu com inovação e compromisso. Somos uma empresa genuinamente local, especializada em Serviços de Comunicação Multimídia (SCM).</p>
+                <div class="row mt-4">
+                    <div class="col-sm-6 mb-3">
+                        <div class="info-card">
+                            <i class="fas fa-building"></i>
+                            <h5 class="fw-bold">Razão Social</h5>
+                            <p>Connect 10 Internet LTDA</p>
+                            <small class="text-muted">Nome Fantasia: Connect10</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="info-card">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h5 class="fw-bold">Fundação</h5>
+                            <p>03 de fevereiro de 2003</p>
+                            <small>23 anos, 2 meses e 5 dias de experiência</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="info-card">
+                            <i class="fas fa-file-invoice"></i>
+                            <h5 class="fw-bold">CNPJ</h5>
+                            <p>05.502.768/0001-87</p>
+                            <small>Inscrição Estadual SP: 224.161.901.111 / 224.381.804.118</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="info-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h5 class="fw-bold">Situação</h5>
+                            <p>ATIVA na Receita Federal</p>
+                            <small>CNAE: 61.10-8-03 (SCM)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-white p-4 rounded-4 shadow-sm">
+                    <div class="d-flex mb-4">
+                        <i class="fas fa-map-marker-alt fs-1 text-primary me-3"></i>
+                        <div>
+                            <h4>Matriz e correspondência</h4>
+                            <p class="mb-0">Rua Doutor Jaguaribe, 441 - Vila dos Lavradores<br>Botucatu - SP, CEP: 18609-081</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="mt-3">
+                        <i class="fas fa-envelope fs-5 me-2 text-primary"></i> <strong>E-mail:</strong> connect10@connect10.com.br <br>
+                        <i class="fas fa-phone-alt fs-5 me-2 text-primary mt-2"></i> <strong>Telefone:</strong> (14) 3811-3030 <br>
+                        <i class="fab fa-whatsapp fs-5 me-2 text-success"></i> <strong>Whatsapp:</strong> (14) 99723-4636
+                    </div>
+                    <div class="alert alert-info mt-4 mb-0">
+                        <i class="fas fa-trophy me-2"></i> + de 23 anos de confiança e qualidade em Botucatu.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Diferenciais inovadores -->
+<section id="diferenciais" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Por que ser <span style="color:#00b4d8;">Connect10</span>?</h2>
+            <p class="text-muted">Inovação, fibra óptica e atendimento humano. Diferenciais que fazem a diferença.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="diferencial-box text-center">
+                    <div class="diferencial-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <h4>Ultra Velocidade</h4>
+                    <p>Tecnologia FTTH com links redundantes e baixa latência para games e home office.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="diferencial-box text-center">
+                    <div class="diferencial-icon"><i class="fas fa-clock"></i></div>
+                    <h4>Suporte Ágil</h4>
+                    <p>Atendimento local em Botucatu, equipe técnica própria e plantão 24h via WhatsApp.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="diferencial-box text-center">
+                    <div class="diferencial-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Segurança Digital</h4>
+                    <p>Proteção contra ameaças e firewall incluso nos planos empresariais e residenciais.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="diferencial-box text-center">
+                    <div class="diferencial-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h4>Compromisso Local</h4>
+                    <p>Mais de duas décadas investindo na cidade, gerando empregos e conectando Botucatu.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contato e localização + mapa fictício interativo -->
+<section id="contato" class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-5">
+                <h2 class="section-title">Fale com a gente</h2>
+                <p>Estamos prontos para tirar suas dúvidas, agendar instalação ou oferecer o melhor plano para seu perfil.</p>
+                <div class="mb-4 mt-4">
+                    <div class="d-flex mb-3">
+                        <i class="fas fa-phone-alt fs-4 me-3 text-primary"></i>
+                        <div><strong>Telefone fixo</strong><br>(14) 3811-3030</div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <i class="fab fa-whatsapp fs-4 me-3 text-success"></i>
+                        <div><strong>Whatsapp Comercial</strong><br>(14) 99723-4636</div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <i class="fas fa-envelope fs-4 me-3 text-primary"></i>
+                        <div><strong>E-mail</strong><br><a href="mailto:connect10@connect10.com.br" class="text-decoration-none">connect10@connect10.com.br</a></div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <i class="fas fa-map-pin fs-4 me-3 text-danger"></i>
+                        <div><strong>Endereço para correspondência</strong><br>Rua Doutor Jaguaribe, 441 - Vila dos Lavradores, Botucatu/SP - CEP 18609-081</div>
+                    </div>
+                </div>
+                <a href="https://wa.me/5514997234636?text=Olá%20Connect10%20vim%20pelo%20site%20e%20quero%20informações!" class="btn btn-success rounded-pill px-4 py-2 fw-bold" target="_blank"><i class="fab fa-whatsapp me-2"></i>Chamar no WhatsApp</a>
+            </div>
+            <div class="col-lg-7">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="card-body p-0">
+                        <!-- Mapa estilo (iframe simulado com imagem estática interativa e link) -->
+                        <iframe class="w-100" height="320" style="border:0;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Rua+Doutor+Jaguaribe,+441,+Botucatu+SP&zoom=15&language=pt-BR"></iframe>
+                        <div class="p-4 bg-white">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <div><i class="fas fa-building me-2"></i> Connect10 Internet LTDA</div>
+                                <div><i class="fas fa-check-circle text-success"></i> CNPJ: 05.502.768/0001-87</div>
+                            </div>
+                            <hr>
+                            <p class="mb-0 small">Inscrição Estadual SP: 224.161.901.111 / 224.381.804.118 | SCM - Ativo desde 2003.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Rodapé completo -->
+<footer class="pt-5 pb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 mb-4">
+                <h3 class="text-white">Connect<span class="text-warning">10</span></h3>
+                <p>Internet fibra óptica com propósito: conectar pessoas e negócios em Botucatu com qualidade e transparência.</p>
+                <div class="d-flex gap-3 mt-3">
+                    <a href="#" class="text-white-50"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-white-50"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-white-50"><i class="fab fa-linkedin fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5 class="text-white">Links Rápidos</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#inicio" class="text-white-50 text-decoration-none">Início</a></li>
+                    <li><a href="#planos" class="text-white-50 text-decoration-none">Planos</a></li>
+                    <li><a href="#sobre" class="text-white-50 text-decoration-none">Sobre</a></li>
+                    <li><a href="#contato" class="text-white-50 text-decoration-none">Contato</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="text-white">Dados Legais</h5>
+                <p class="small text-white-50 mb-1">CNPJ: 05.502.768/0001-87<br>IE: 224.161.901.111 / 224.381.804.118<br>Razão Social: Connect 10 Internet LTDA</p>
+                <p class="small text-white-50">© 2026 Connect10 - Todos os direitos reservados.<br> Botucatu - SP</p>
+            </div>
+        </div>
+        <hr class="bg-white-50">
+        <div class="text-center text-white-50 small">
+            <i class="fas fa-wifi me-1"></i> Serviços de Comunicação Multimídia (SCM) | 23 anos conectando você ao futuro.
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
